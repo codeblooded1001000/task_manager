@@ -168,7 +168,7 @@ const deleteTask = async (req, res) => {
     if (task[0].assignee !== name) {
       return res.status(403).json({
         status: 403,
-        message: 'You are not allowed to update this.',
+        message: 'You are not allowed to delete this.',
       });
     }
     await task[0].deleteOne();
