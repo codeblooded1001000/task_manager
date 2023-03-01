@@ -76,12 +76,42 @@ const getCompletedTasks = async (req, res) => {
   } catch (error) {
     return res.status(500).send('Something Went wrong');
   }
-};
+}
+
+const getTaskByID = async(req, res) => {
+  const decodedToken = verifyToken(req, res);
+  try {
+    const _id = req.params.id;
+    if(!_id){
+      return res.status(400).json({
+        status: 400,
+        message: 'Please provide task ID',
+      });
+    }
+    // const email = decodedToken.email;
+    // const user = await userModel.find({ email });
+    // const name = user[0].name;
+    const task = await taskManagerModel.find({ _id });
+    if (task.length==0) {
+      return res.status(404).json({
+        status: 404,
+        message: 'No task found with this Id',
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      data: task
+    });
+  } catch (error) {
+    return res.status(500).send('Something Went wrong');
+  }
+}
 
 const updateTask = async (req, res) => {
   const decodedToken = verifyToken(req, res);
   try {
-    if (!req.query.taskId) {
+    const taskId = req.query.taskId;
+    if (!taskId) {
       return res.status(400).json({
         status: 400,
         message: 'Please provide task ID',
@@ -90,7 +120,6 @@ const updateTask = async (req, res) => {
     const email = decodedToken.email;
     const user = await userModel.find({ email });
     const name = user[0].name;
-    const taskId = req.query.taskId;
     const task = await taskManagerModel.find({ _id: taskId });
     if (!task.length) {
       return res.status(404).json({
@@ -158,5 +187,6 @@ module.exports = {
   updateTask,
   getPendingTasks,
   getCompletedTasks,
-  deleteTask
+  deleteTask,
+  getTaskByID
 };
