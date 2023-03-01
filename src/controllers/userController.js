@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const userModel = require('../models/userModel');
-const { signToken, verifyToken } = require('../middlewares/auth');
+const { signToken } = require('../middlewares/auth');
 
 const signUp = async (req, res) => {
   const existingUser = await userModel.findOne({ email: req.body.email }); // CHECKS FOR THE EXISTING USER IN OUR DATABASE
