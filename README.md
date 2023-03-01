@@ -78,7 +78,3 @@ npx nodemon app.js
 # Documentation
 
 Here are the detailed documentation for the API: [Task-Manager](https://documenter.getpostman.com/view/24360292/2s93CSpAtV)
-
-# Demo
-
-https://user-images.githubusercontent.com/110348583/222139538-c5a499b5-ea7c-4a82-a67e-efab0446ea58.mp4
