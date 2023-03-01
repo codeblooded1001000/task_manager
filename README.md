@@ -51,33 +51,264 @@ npx nodemon app.js
 
 4. Access the API at `http://localhost:5000/`
 
+## Documentation
+
+Here's the detailed documentation for the API: [Task-Manager](https://documenter.getpostman.com/view/24360292/2s93CSpAtV)
+
 ## API Endpoints
 
 #### Users Endpoints
 
-`POST /users/signUp`: Register a user.
+```shell
+POST /users/signUp
+```
+Description: Register a user.
 
-`POST /users/login`: Login a user.
+Body:
+
+```shell
+{
+    "name": "Pushpander Singh Tanwar",
+    "email": "test@sample.com",
+    "password": "helloworld",
+    "mobile": 701001010
+}
+```
+Response:
+```shell
+{
+    "success": true,
+    "data": {
+        "userId": "63ff4a67b0e282c7768d71f2",
+        "email": "sample@wxample.com",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2ZmNGE2N2IwZTI4MmM3NzY4ZDcxZjIiLCJlbWFpbCI6InNhbXBsZUB3eGFtcGxlLmNvbSIsImlhdCI6MTY3NzY3NTExMX0.1vH-r9YUcpUyOfenTcpb3c9vgGBrYpvHnS4mZeLnVlI",
+        "createdAt": "2023-03-01T12:51:51.976Z"
+    }
+}
+```
+
+***
+
+
+```shell
+POST /users/login
+```
+Description: Login a user.
+
+Body:
+
+```shell
+{
+    "email": "test@sample.com",
+    "password": "helloworld",
+}
+```
+Response:
+```shell
+{
+    "success": true,
+    "data": {
+        "status": 200,
+        "message": "User login successful",
+        "userId": "63ff4a67b0e282c7768d71f2",
+        "email": "test@sample.com",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2ZmNGE2N2IwZTI4MmM3NzY4ZDcxZjIiLCJlbWFpbCI6InNhbXBsZUB3eGFtcGxlLmNvbSIsImlhdCI6MTY3NzY3NTE0MH0.vsNrai_NZQQVa3Xma_z2WNnjIvoy1gPcxYVZAo146M8"
+    }
+}
+```
 
 #### Tasks endpoints
 
-`POST /tasks/addNewTask`: Create a new task for the user, using the name of that user, by which he/she is logged in.
+```shell
+POST /tasks/addNewTask
+```
+Description: Create a new task for the user, using the name of that user, by which he/she is logged in.
 
-`GET /tasks/getAll`: Fetches all tasks.
+Body:
 
-`GET /tasks/getCompletedTasks`: Fetches all completed tasks of that particular user, who is logged in after authenticating.
+```shell
+{
+    "name": "Some task1",
+    "description": "Some desc1",
+    "expireOn": "2023-03-02"
+}
+```
+Response:
+```shell
+{
+    "status": 201,
+    "message": "New Task created",
+    "data": {
+        "name": "Some task1",
+        "description": "Some desc1",
+        "expireOn": "2023-03-02T00:00:00.000Z",
+        "completed": false,
+        "_id": "63ff4a9bb0e282c7768d71f8",
+        "assignee": "Sample abc",
+        "createdAt": "2023-03-01T12:52:43.632Z"
+    }
+}
+```
 
-`GET /tasks/getPendingTasks`: Fetches all pending tasks of that particular user, who is logged in after authenticating.
+***
 
-`GET /tasks/${id}`: Fetches that task which is associated with the id, in the parameter.
+```shell
+GET /tasks/getAll
+```
+Description: Fetches all tasks of that particular user, who is logged in after authenticating.
 
-`PATCH /tasks/updateTask?taskId=${id}`: Updates that task which is associated with the id, in the query.
+Response:
+```shell
+{
+    "status": 200,
+    "message": "All tasks",
+    "data": [
+        {
+            "_id": "63ff4a8eb0e282c7768d71f5",
+            "name": "Some task6",
+            "description": "Some desc6",
+            "expireOn": "2023-03-04T00:00:00.000Z",
+            "completed": false,
+            "assignee": "Sample abc",
+            "createdAt": "2023-03-01T12:52:31.125Z"
+        },
+        {
+            "_id": "63ff4a9bb0e282c7768d71f8",
+            "name": "Some task7",
+            "description": "Some desc7",
+            "expireOn": "2023-03-04T00:00:00.000Z",
+            "completed": true,
+            "assignee": "Sample abc",
+            "createdAt": "2023-03-01T12:52:43.632Z"
+        }
+    ]
+}
+```
 
-`DELETE /tasks/deleteTask?taskId=${id}`: Updates that task which is associated with the id, in the query.
+***
 
-# Documentation
 
-Here are the detailed documentation for the API: [Task-Manager](https://documenter.getpostman.com/view/24360292/2s93CSpAtV)
+```shell
+GET /tasks/getCompletedTasks
+```
+Description: Fetches all completed tasks of that particular user, who is logged in after authenticating.
+
+Response:
+```shell
+{
+    "status": 200,
+    "message": "All Completed tasks",
+    "data": [
+        {
+            "_id": "63ff4a9bb0e282c7768d71f8",
+            "name": "Some task7",
+            "description": "Some desc7",
+            "expireOn": "2023-03-04T00:00:00.000Z",
+            "completed": true,
+            "assignee": "Sample abc",
+            "createdAt": "2023-03-01T12:52:43.632Z"
+        }
+    ]
+}
+```
+
+***
+
+
+```shell
+GET /tasks/getPendingTasks
+```
+Description: Fetches all pending tasks of that particular user, who is logged in after authenticating.
+
+Response:
+```shell
+{
+    "status": 200,
+    "message": "All pending tasks",
+    "data": [
+        {
+            "_id": "63ff4a8eb0e282c7768d71f5",
+            "name": "Some task6",
+            "description": "Some desc6",
+            "expireOn": "2023-03-04T00:00:00.000Z",
+            "completed": false,
+            "assignee": "Sample abc",
+            "createdAt": "2023-03-01T12:52:31.125Z"
+        }
+    ]
+}
+```
+***
+
+
+```shell
+GET /tasks/${id}
+```
+Description: Fetches that task which is associated with the id, in the parameter.
+
+Response:
+```shell
+{
+    "status": 200,
+    "data": [
+        {
+            "_id": "63ff4a9bb0e282c7768d71f8",
+            "name": "Some task7",
+            "description": "Some desc7",
+            "expireOn": "2023-03-04T00:00:00.000Z",
+            "completed": true,
+            "assignee": "Sample abc",
+            "createdAt": "2023-03-01T12:52:43.632Z"
+        }
+    ]
+}
+```
+***
+
+```shell
+PATCH /tasks/updateTask?taskId=${id}
+```
+Description: Updates that task which is associated with the id, in the query.
+
+Body:
+```shell
+{
+   "completed": true
+}
+```
+
+Response:
+```shell
+{
+    "status": 200,
+    "message": "task updated",
+    "data": [
+        {
+            "_id": "63ff4a9bb0e282c7768d71f8",
+            "name": "Some task7",
+            "description": "Some desc7",
+            "expireOn": "2023-03-04T00:00:00.000Z",
+            "completed": true,
+            "assignee": "Sample abc",
+            "createdAt": "2023-03-01T12:52:43.632Z"
+        }
+    ]
+}
+```
+***
+
+```shell
+DELETE /tasks/deleteTask?taskId=${id}
+```
+Description: Updates that task which is associated with the id, in the query.
+
+Response:
+```shell
+{
+    "status": 200,
+    "message": "task deleted"
+}
+```
 
 # Demo
 
