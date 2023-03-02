@@ -81,7 +81,7 @@ Response:
     "data": {
         "userId": "63ff4a67b0e282c7768d71f2",
         "email": "sample@wxample.com",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2ZmNGE2N2IwZTI4MmM3NzY4ZDcxZjIiLCJlbWFpbCI6InNhbXBsZUB3eGFtcGxlLmNvbSIsImlhdCI6MTY3NzY3NTExMX0.1vH-r9YUcpUyOfenTcpb3c9vgGBrYpvHnS4mZeLnVlI",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IGE2N2IwZTI4MmM3NzY4ZDcxZjIiLCJlbWFpbCI6InNhbXBsZUB3eGFtcGxlLmNvbSIsImlhdCI6MTY3NzY3NTExMXUyOfenTcpb3c9vgGBrYpvHnS4mZeLnVlI",
         "createdAt": "2023-03-01T12:51:51.976Z"
     }
 }
@@ -112,7 +112,7 @@ Response:
         "message": "User login successful",
         "userId": "63ff4a67b0e282c7768d71f2",
         "email": "test@sample.com",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2M2ZmNGE2N2IwZTI4MmM3NzY4ZDcxZjIiLCJlbWFpbCI6InNhbXBsZUB3eGFtcGxlLmNvbSIsImlhdCI6MTY3NzY3NTE0MH0.vsNrai_NZQQVa3Xma_z2WNnjIvoy1gPcxYVZAo146M8"
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXI2M2ZmNGE2N2IwZTI4MmM3NzY4ZDcxZjIiLCJlbWFpbCI6InNhbXBsZUB3eGFtcGxlLmNvbSIsImlhdCI6MTY3Na3Xma_z2WNnjIvoy1gPcxYVZAo146M8"
     }
 }
 ```
