@@ -300,7 +300,7 @@ Response:
 ```shell
 DELETE /tasks/deleteTask?taskId=${id}
 ```
-Description: Updates that task which is associated with the id, in the query.
+Description: Deletes that task which is associated with the id, in the query.
 
 Response:
 ```shell
